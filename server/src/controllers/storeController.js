@@ -208,7 +208,7 @@ const getOwnerDashboard = async (req, res, next) => {
           name: r.user.name,
           email: r.user.email,
           rating: r.rating,
-          ratedAt: r.created_at,
+          ratedAt: r.createdAt || r.created_at,
         })),
       },
     });

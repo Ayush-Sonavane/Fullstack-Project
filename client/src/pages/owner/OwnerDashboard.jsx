@@ -41,13 +41,17 @@ const OwnerDashboard = () => {
       render: (val) => <StarRating value={val} size="sm" />,
     },
     { key: 'ratedAt', label: 'Rating Date', sortable: true,
-      render: (val) => (
-        <span className="text-surface-500 font-medium text-xs">
-          {new Date(val).toLocaleDateString('en-US', {
-            year: 'numeric', month: 'short', day: 'numeric',
-          })}
-        </span>
-      ),
+      render: (val) => {
+        const date = val ? new Date(val) : null;
+        const isValid = date && !isNaN(date.getTime());
+        return (
+          <span className="text-surface-500 font-medium text-xs">
+            {isValid ? date.toLocaleDateString('en-US', {
+              year: 'numeric', month: 'short', day: 'numeric',
+            }) : '—'}
+          </span>
+        );
+      },
     },
   ];
 
